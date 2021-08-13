@@ -1,0 +1,377 @@
+#This file was generated automatically for testing purposes
+#See: kirine-server
+
+type Query {
+  _: Boolean
+
+  # Returns only one cartoon. To fetch more than one use the paginated 'cartoons' query.
+  Cartoon(id: String!): Cartoon
+
+  # Returns only one user. To fetch more than one use the paginated 'users' query.
+  User(id: String, name: String): User
+
+  # The currently logged in user.
+  viewer: User
+
+  # Paginated request. The only way to fetch more than one cartoon.
+  cartoons(
+    pageNum: Int!
+    perPage: Int!
+    id: String
+
+    # Fuzzy search by title and synonyms.
+    search: String
+    year: Int
+    yearGt: Int
+    yearLt: Int
+    episodesGt: Int
+    episodesLt: Int
+
+    # Matches all cartoons whose format is included in the array.
+    formats: [CartoonFormat]
+
+    # Matches all cartoons whose format is included in the array.
+    statuses: [CartoonStatus]
+
+    # Matches only those cartoons whose genre lists contain every elements in the array.
+    genres: [CartoonGenre]
+
+    # The default value is ID.
+    sort: CartoonSort
+  ): CartoonsPage
+
+  # Paginated request. The only way to fetch more than one user.
+  users(
+    pageNum: Int!
+    perPage: Int!
+    id: String
+    name: String
+
+    # /.*search.*/i
+    search: String
+    sort: UserSort
+  ): UsersPage
+}
+
+type Mutation {
+  _: Boolean
+  addCartoon(
+    title: String!
+    format: CartoonFormat!
+    status: CartoonStatus!
+    description: String
+
+    # A string with the format 'YYYYMMDD'. Unknown values are represented with zeros, e.g. '20201100'
+    startDate: String
+    endDate: String
+    year: Int
+    duration: Int
+    episodes: Int
+    genres: [CartoonGenre]
+    countryOfOrigin: [Country]
+    studios: [String]
+    coverImage: String
+    bannerImage: String
+    synonyms: [String]
+    mainSeries: String
+    seasons: [CartoonSeasonInput]
+    related: [CartoonConnectionInput]
+  ): Cartoon
+  updateCartoon(
+    id: String!
+    title: String
+    format: CartoonFormat
+    status: CartoonStatus
+    description: String
+
+    # A string with the format 'YYYYMMDD'. Unknown values are represented with zeros, e.g. '20201100'
+    startDate: String
+    endDate: String
+    year: Int
+    duration: Int
+    episodes: Int
+    genres: [CartoonGenre]
+    countryOfOrigin: [Country]
+    studios: [String]
+    coverImage: String
+    bannerImage: String
+    synonyms: [String]
+    mainSeries: String
+    seasons: [CartoonSeasonInput]
+    related: [CartoonConnectionInput]
+  ): Cartoon
+  login(name: String!, password: String!): OperationStatus!
+  logout: OperationStatus!
+
+  # Creates a new user and a cartoon list for that user.
+  addUser(name: String!, password: String!): User
+
+  # Updates the account of the currently logged in user.
+  updateUser(name: String, bio: String, avatar: String): User
+  changeUserPassword(
+    oldPassword: String!
+    newPassword: String!
+  ): OperationStatus!
+
+  # Part of the internal authorization mechanism, admin access only.
+  addRole(userId: String!, role: Role!): OperationStatus!
+  removeRole(userId: String!, role: Role!): OperationStatus!
+  addCartoonToFavourites(cartoonId: String!): OperationStatus!
+  removeCartoonFromFavourites(cartoonId: String!): OperationStatus!
+  addOrUpdateCartoonListEntry(
+    cartoonId: String!
+    status: CartoonEntryStatus
+    episodesSeen: Int
+    seasonsSeen: Int
+    score: Int
+    startedWatching: Date
+    finishedWatching: Date
+    timesRewatched: Int
+    notes: String
+  ): CartoonListEntry
+  removeCartoonListEntry(cartoonId: String!): OperationStatus!
+}
+
+scalar Date
+
+# Returned by mutations.
+# When a mutation fails, an error is always thrown.
+# The "success" field is either true or not defined at all due to an error.
+type OperationStatus {
+  success: Boolean
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+type Cartoon {
+  id: ID!
+  title: String!
+  format: CartoonFormat!
+  status: CartoonStatus!
+  description: String
+  startDate: FuzzyDate
+  endDate: FuzzyDate
+
+  # Used for grouping cartoons together by year. Should be the same as startDate.year
+  year: Int
+
+  # The duration of a single episode in minutes.
+  duration: Int
+  episodes: Int
+  genres: [CartoonGenre]
+
+  # The countries' commonly used names. E.g. 'United States' is preferable over 'USA'. There is no validation.
+  countryOfOrigin: [Country]
+  studios: [String]
+
+  # 460px wide, preferable height:width ratio is about 7:5
+  coverImage: String
+
+  # 1900px x 400px
+  bannerImage: String
+  synonyms: [String]
+
+  # Should be null unless the format is 'SEASON'. Points to the 'MULTI_SEASON_SERIES' it belongs to.
+  mainSeries: Cartoon
+
+  # The seasons of a 'MULTI_SEASON_SERIES'
+  seasons: [CartoonSeason]
+
+  # Related cartoons. If deemed appropriate, a cartoon may be ralated to a particular season rather than the main series.
+  related: [CartoonConnection]
+  lastUpdated: Date!
+  popularity: Int
+  favourites: Int
+  avgScore: Int
+
+  # True if the currently logged in user has added the cartoon to their list of favourites.
+  isFavourite: Boolean
+
+  # The currently logged in user's cartoon list entry for this cartoon. NULL if it doesn't exist.
+  userEntry: CartoonListEntry
+}
+
+type CartoonConnection {
+  relationType: CartoonRelationType!
+  relatedCartoon: Cartoon!
+}
+
+type CartoonSeason {
+  seasonNumber: Int!
+  seasonCartoon: Cartoon!
+}
+
+# Useful when the exact date has not yet been announced, but there is partial information, e.g. year and month
+type FuzzyDate {
+  year: Int
+  month: Int
+  day: Int
+}
+
+enum CartoonFormat {
+  SINGLE_SEASON_SERIES
+  MULTI_SEASON_SERIES
+  SEASON
+  MOVIE
+  SHORT
+  SPECIAL
+}
+
+enum CartoonStatus {
+  NOT_YET_RELEASED
+  RELEASING
+  HIATUS
+  CANCELLED
+  FINISHED
+}
+
+enum CartoonRelationType {
+  PREQUEL
+  SEQUEL
+  PARENT
+  SIDE_STORY
+  SPIN_OFF
+  ALTERNATIVE
+}
+
+enum CartoonGenre {
+  ACTION
+  ADVENTURE
+  COMEDY
+  CRIME
+  DRAMA
+  FANTASY
+  HORROR
+  MUSIC
+  MYSTERY
+  ROMANCE
+  SCI_FI
+  THRILLER
+}
+
+enum Country {
+  UNITED_STATES
+  UNITED_KINGDOM
+  CANADA
+}
+
+input CartoonSeasonInput {
+  seasonNumber: Int!
+
+  # The ID of the cartoon.
+  seasonCartoon: String!
+}
+
+input CartoonConnectionInput {
+  relationType: CartoonRelationType!
+
+  # The ID of the cartoon.
+  relatedCartoon: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+
+  # Part of the internal authorization mechanism. May only be set and viewed by admins.
+  roles: [Role]
+  bio: String
+  avatar: String
+
+  # 1900px x 400px
+  bannerImage: String
+
+  # The user's cartoon list. Each user has at least one, and presently only one.
+  cartoonList: CartoonList!
+  favourites: [Cartoon]
+  stats: UserStats
+  lastUpdated: Date!
+}
+
+type UserStats {
+  totalCartoons: Int!
+  totalEpisodes: Int!
+  totalMinutes: Int!
+  avgScore: Float!
+  watching: Int!
+  completed: Int!
+  paused: Int!
+  dropped: Int!
+  planning: Int!
+}
+
+type CartoonList {
+  id: ID!
+  entries: [CartoonListEntry]
+  lastUpdated: Date!
+}
+
+type CartoonListEntry {
+  cartoon: Cartoon!
+  status: CartoonEntryStatus!
+  episodesSeen: Int
+  score: Int
+  startedWatching: Date
+  finishedWatching: Date
+  timesRewatched: Int
+  notes: String
+}
+
+enum CartoonEntryStatus {
+  WATCHING
+  REWATCHING
+  COMPLETED
+  PAUSED
+  DROPPED
+  PLANNING
+}
+
+type CartoonsPage {
+  pageInfo: PageInfo!
+  items: [Cartoon]
+}
+
+type UsersPage {
+  pageInfo: PageInfo!
+  items: [User]
+}
+
+type PageInfo {
+  totalItems: Int
+  perPage: Int
+  currentPage: Int
+  totalPages: Int
+  hasNextPage: Boolean
+}
+
+enum UserSort {
+  ID
+  USERNAME
+  USERNAME_DESC
+  DAYS_WATCHED
+  DAYS_WATCHED_DESC
+}
+
+enum CartoonSort {
+  ID
+  TITLE
+  TITLE_DESC
+  SEARCH_MATCH
+  FORMAT
+  STATUS
+  START_DATE
+  START_DATE_DESC
+  END_DATE
+  END_DATE_DESC
+  DURATION
+  DURATION_DESC
+  POPULARITY
+  POPULARITY_DESC
+  FAVOURITES
+  FAVOURITES_DESC
+  AVG_SCORE
+  AVG_SCORE_DESC
+}

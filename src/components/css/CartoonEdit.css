@@ -1,0 +1,111 @@
+.cartoon-edit-submit {
+    margin-bottom: 2rem;
+    font-size: 11pt;
+    width: 100%;
+}
+
+.cartoon-edit-menu {
+    font-size: 11pt;
+}
+
+.cartoon-edit-menu .nav-link {
+    color: #9fadbd;
+}
+
+.cartoon-edit-menu .nav-link.active {
+    background-color: #151f2e !important;
+    color: #9fadbd !important;
+    font-weight: bold;
+}
+
+.cartoon-edit-section form {
+    background-color: #151f2e;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 3px;
+}
+
+.cartoon-edit-section form .form-label {
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+
+.cartoon-edit-section form .form-control {
+    font-size: 11pt;
+}
+
+.cartoon-edit-section form input.form-control,
+.cartoon-edit-section form select.form-control,
+.cartoon-edit-section form textarea.form-control {
+    background-color: #0b1622;
+    border-color: #0b1622;
+    color: #9fadbd;
+}
+
+.cartoon-edit-section h5 {
+    font-size: 11pt;
+    margin-bottom: 1rem;
+}
+
+.cartoon-edit-section h5.subform-header {
+    font-size: 11pt;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.cartoon-edit-section .rmsc .dropdown-container {
+    background-color: #0b1622;
+}
+
+.cartoon-edit-section img.cover {
+    width: auto;
+    height: 50vh;
+    margin-top: 1rem;
+    border-radius: 3px;
+}
+
+.cartoon-edit-section img.banner {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 3px;
+}
+
+.cartoon-edit-relations .relations-container {
+    margin-top: 1rem;
+}
+
+.cartoon-edit-relations .cartoon-relation {
+    width: 100%;
+    background-color: #151f2e;
+    border-radius: 3px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cartoon-edit-relations .cartoon-relation .media-body {
+    padding-left: 1rem;
+    margin: auto;
+}
+
+.cartoon-edit-relations .cartoon-relation img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.cartoon-edit-relations .related-cartoon-title {
+    color: #9fadbd;
+    font-size: 12pt;
+}
+
+.cartoon-edit-relations .related-cartoon-title:hover {
+    text-decoration: none;
+}
+
+
+.cartoon-edit-relations .related-cartoon-info {
+    font-size: 10pt;
+}

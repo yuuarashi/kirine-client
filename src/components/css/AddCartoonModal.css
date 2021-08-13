@@ -1,0 +1,55 @@
+#add-cartoon-modal {
+    background-color: #151f2e;
+}
+
+#add-cartoon-modal .modal-header {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+    height: 180px;
+    border: none;
+    padding: 50px 50px 0 50px;
+    background-color: #151f2e;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 250px #2f3133;
+}
+
+#add-cartoon-modal .modal-header img {
+    height: 150px;
+    width: auto;
+    margin-bottom: -30px;
+}
+
+#add-cartoon-modal .modal-header button.close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+}
+
+#add-cartoon-modal .modal-header .btn-primary {
+    font-size: 11pt;
+    margin-bottom: 1rem;
+}
+
+#add-cartoon-modal .modal-header #cartoon-title {
+    padding: 20px;
+    color: white;
+    font-size: 12pt;
+}
+
+#add-cartoon-modal .modal-body {
+    background-color: #151f2e;
+    padding-top: 70px;
+}
+
+#add-cartoon-modal .modal-body .form-control {
+    background-color: #0b1622;
+    border-color: #0b1622;
+    color: #9fadbd;
+}
+
+.react-datepicker-popper {
+    z-index: 10 !important;
+}

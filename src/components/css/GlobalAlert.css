@@ -1,0 +1,22 @@
+#global-alert-container {
+    position: fixed;
+    top: 30px; right: 0; left: 0;
+    z-index: 9999;
+    text-align: center;
+}
+
+#global-alert {
+    display: inline-block;
+}
+
+@media (min-width: 992px) {
+    #global-alert {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 991px) {
+    #global-alert {
+        width: 80vw;
+    }
+}

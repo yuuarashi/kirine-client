@@ -1,0 +1,116 @@
+.user-banner-container {
+    position: relative;
+}
+
+.user-banner-shadow {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+    background: rgb(21,31,46);
+    background: linear-gradient(0deg, rgba(21,31,46,0.6110819327731092) 0%, rgba(255,255,255,0) 50%);
+    height: 100%;
+    width: 100%;
+}
+
+.user-banner {
+    width: 100%;
+    height: auto;
+}
+
+.user-avatar {
+    position: absolute;
+    bottom: 0; left: 12vw;
+    z-index: 2;
+    width: 13vw;
+}
+
+.user-name {
+    position: absolute;
+    bottom: 1.5rem; left: 27vw;
+    z-index: 2;
+    color: white;
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+#user-navbar {
+    background-color: #151f2e;
+}
+
+#user-navbar .nav-link {
+    margin: 0 20px 0 20px;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+#user-navbar .nav-link.selected {
+    color: #b368e6;
+}
+
+.overview-favs-container {
+    display: inline-block;
+    padding: 1.2rem 0 0 1.2rem;
+    background-color: #151f2e;
+    border-radius: 3px;
+}
+
+.overview-fav {
+    display: inline-block;
+    margin: 0 1.2rem 1.2rem 0;
+}
+
+.overview-fav img {
+    width: 100px;
+    height: auto;
+    border-radius: 3px;
+}
+
+.overview-fav-tooltip {
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.overview-fav-title {
+    font-size: 11pt;
+    margin-bottom: 0.5rem;
+}
+
+.overview-fav-info {
+    font-size: 9pt;
+}
+
+.overview-stats-container {
+    font-size: 11pt;
+}
+
+.overview-stats-header {
+    padding: 1rem;
+    background-color: #151f2e;
+    font-weight: bold;
+    font-size: 12pt;
+    color: #b368e6;
+    border-radius: 3px 3px 0 0;
+}
+
+.overview-stats-details {
+    padding: 1rem;
+    background-color: #1b273a;
+    font-size: 11pt;
+}
+
+.overview-stats-labels {
+    color: #b368e6;
+    font-weight: 500;
+}
+
+.overview-stats-numbers div {
+    width: 50%;
+    text-align: right;
+    font-weight: 500;
+}
+
+.overview-stats-bar {
+    height: 10px;
+    width: 100%;
+    border-radius: 0 0 3px 3px;
+}

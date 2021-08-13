@@ -1,0 +1,45 @@
+.project-description {
+    background-color: #151f2e;
+    padding: 2rem;
+    color: #c4d1df;
+    border-radius: 3px;
+}
+
+.project-task-container {
+}
+
+.project-task {
+    display: flex;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 3px;
+    background-color: #151f2e;
+}
+
+.project-task-description {
+    flex: 5;
+    font-size: 11pt;
+    color: #c4d1df;
+}
+
+.project-task-status {
+    flex: 1;
+    padding: 0.2rem;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #222;
+}
+
+.project-task-status.finished {
+    background-color: #26ffdb;
+}
+
+.project-task-status.in-progress {
+    background-color: #21ff42;
+}
+
+.project-task-status.not-started {
+    background-color: #ff2e2e;
+}

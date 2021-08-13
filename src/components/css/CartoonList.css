@@ -1,0 +1,196 @@
+/* Cartoon List styles */
+
+.cartoon-list {
+    width: 60vw;
+}
+
+.entry-list-category {
+    margin: 3rem 0 1rem 2rem;
+    font-size: 14pt;
+}
+
+.cartoon-list-header {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 3px 3px 0 0;
+    background-color: #151f2e;
+    font-weight: bold;
+}
+
+.entry-image-header {
+    height: 40px;
+    width: 56px;
+}
+
+.cartoon-list-entry {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    width: 100%;
+    background-color: #151f2e;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.cartoon-list-entry:hover {
+    background-color: #b368e6;
+    color: white;
+}
+
+.cartoon-list-entry:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
+.cartoon-list-entry .entry-status {
+    display: inline-block;
+    margin-left: 1rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.cartoon-list-entry .entry-status.releasing {
+    background-color: rgb(123,213,85);
+    box-shadow: 0 0 5px rgb(123 213 85 / 80%);
+}
+
+.cartoon-list-entry .entry-status.not-released {
+    background-color: rgb(232,93,117);
+    box-shadow: 0 0 5px rgb(232 93 117 / 80%);
+}
+
+.cartoon-list-entry .entry-image {
+    flex: 1;
+    display: flex;
+    max-width: 60px;
+}
+
+.cartoon-list-entry .entry-image img {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.cartoon-list-entry .entry-image .show-modal-button {
+    position: absolute;
+    top: 0; left: 0;
+    visibility: hidden;
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    background-color: rgba(100, 100, 100, 0.5);
+    border-radius: 2px;
+    font-size: 16pt;
+    text-align: center;
+    line-height: 40px;
+    transition: visibility 0.5s ease;
+}
+
+.cartoon-list-entry:hover .entry-image .show-modal-button {
+    visibility: visible;
+    cursor: pointer;
+}
+
+.entry-title {
+    flex: 5;
+    padding: 20px;
+    font-size: 12pt;
+    text-align: left;
+}
+
+.entry-title-link {
+    color: #9fadbd;
+    transition: color 0.5s ease;
+}
+
+.entry-title-link:hover {
+    color: #9fadbd;
+    text-decoration: none;
+}
+
+.cartoon-list-entry:hover .entry-title-link {
+    color: white;
+}
+
+.entry-score {
+    flex: 1;
+    padding: 20px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+.entry-progress {
+    flex: 1;
+    padding: 20px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+.cartoon-list-entry .episode-increment-button {
+    display: none;
+}
+
+.cartoon-list-entry:hover .episode-increment-button {
+    display: inline;
+    cursor: pointer;
+}
+
+.entry-format {
+    flex: 1;
+    padding: 20px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+.cartoon-seasons {
+    margin-left: 30px;
+    margin-bottom: 1rem;
+}
+
+.cartoon-seasons .season-entry {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    width: 60%;
+    background-color: #151f2e;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.cartoon-seasons .season-entry:hover {
+    background-color: #b368e6;
+    color: white;
+}
+
+.cartoon-seasons .season-entry:hover .entry-title-link {
+    color: white;
+}
+
+.cartoon-seasons .season-entry:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
+.cartoon-seasons .season-entry .entry-image img {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    margin-left: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.cartoon-seasons .season-entry .entry-title {
+    flex: 3;
+    padding: 20px;
+    font-size: 12pt;
+    text-align: left;
+}
+
+.cartoon-seasons .season-entry .entry-progress {
+    flex: 1;
+    padding: 20px;
+    font-size: 12pt;
+    text-align: center;
+}

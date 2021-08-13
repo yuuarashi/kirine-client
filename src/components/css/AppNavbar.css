@@ -1,0 +1,16 @@
+#app-navbar {
+    background-color: #151f2e88;
+    height: 70px;
+    transition: top 0.3s ease, background-color 0.3s ease;
+    height: 70px;
+}
+
+#app-navbar:hover {
+    background-color: #151f2e;
+}
+
+#app-navbar .nav-link {
+    margin: 0 20px 0 20px;
+    font-weight: bold;
+    font-size: 11pt;
+}
